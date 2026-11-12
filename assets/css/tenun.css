@@ -1,0 +1,85 @@
+/* Songketin — nuansa tenunan: tumpal, motif, animasi loading, halaman masuk, halaman 404 */
+
+/* ---------- hiasan tumpal (deretan pucuk rebung) ---------- */
+.tumpal{height:12px;background:var(--marun) url(../img/tumpal.svg) repeat-x left bottom/16px 12px}
+.tumpal-terbalik{transform:scaleY(-1)}
+.tumpal-v{position:absolute;top:0;right:0;bottom:0;width:10px;height:auto;background:var(--marun-gelap) url(../img/tumpal-v.svg) repeat-y left top/10px 16px;opacity:.9}
+.benang-hias{height:6px;border-radius:6px;background:repeating-linear-gradient(90deg,var(--emas-2) 0 10px,var(--marun) 10px 20px);opacity:.9}
+
+/* ---------- loading: penenun di alat tenun ---------- */
+.loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+  background:
+    repeating-linear-gradient(90deg,rgba(107,26,40,.045) 0 1px,transparent 1px 7px),
+    repeating-linear-gradient(0deg,rgba(107,26,40,.045) 0 1px,transparent 1px 7px),
+    radial-gradient(circle at 50% 40%,#fffaf0,var(--krem) 70%);
+  transition:opacity .5s ease,visibility .5s}
+.loader.sembunyi{opacity:0;visibility:hidden;pointer-events:none}
+html.satu-halaman #loader{display:none!important}
+.loader-in{width:min(500px,92vw);text-align:center}
+.weaver{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 18px rgba(63,13,23,.18))}
+.loader-teks{margin:6px 0 0;font:italic 400 1.25rem var(--f-judul);color:var(--marun)}
+.titik i{font-style:normal;opacity:.15;animation:titik 1.3s infinite}.titik i:nth-child(2){animation-delay:.2s}.titik i:nth-child(3){animation-delay:.4s}
+@keyframes titik{0%,60%,100%{opacity:.15}30%{opacity:1}}
+.loader-benang{width:58%;height:4px;margin:14px auto 0;border-radius:4px;background:var(--krem-3);overflow:hidden}
+.loader-benang span{display:block;height:100%;width:42%;border-radius:4px;background:linear-gradient(90deg,var(--emas-2),var(--marun));animation:benang 1.5s ease-in-out infinite}
+@keyframes benang{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+
+/* ---------- halaman masuk / daftar ---------- */
+.auth{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);min-height:100vh}
+.auth-hero{position:relative;overflow:hidden;color:#f8e8c3;padding:44px clamp(28px,5vw,72px) 34px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;
+  background:radial-gradient(120% 90% at 20% 0%,#8a2434 0%,var(--marun) 45%,var(--marun-gelap) 100%)}
+.auth-hero::before{content:"";position:absolute;inset:0;background:url(../img/motif-songket.svg) 0 0/56px 56px;opacity:.55;
+  -webkit-mask-image:linear-gradient(160deg,transparent 12%,#000 80%);mask-image:linear-gradient(160deg,transparent 12%,#000 80%)}
+.auth-hero>*{position:relative}
+.auth-hero .brand{color:#fff3d3;font-size:1.6rem}
+.auth-hero h1{color:#fff3d3;font-size:clamp(2.3rem,4.6vw,3.7rem);line-height:1.08;margin:0 0 18px;max-width:14ch}
+.auth-hero h1 em{font-style:italic;font-weight:400;color:var(--emas-2)}
+.auth-hero .lead{font-size:1.06rem;max-width:44ch;color:#f1dfb7}
+.fitur{display:grid;gap:14px;margin:26px 0 0;padding:0;list-style:none;max-width:46ch}
+.fitur li{display:flex;gap:14px;align-items:flex-start;font-size:.94rem;color:#f1dfb7}
+.fitur .titik-emas{flex:none;width:34px;height:34px;border-radius:10px;background:rgba(227,178,60,.16);border:1px solid rgba(227,178,60,.5);display:grid;place-items:center;color:var(--emas-2)}
+.fitur b{display:block;color:#fff3d3}
+.hero-kain{display:flex;gap:6px;align-items:flex-end;height:64px;opacity:.95}
+.hero-kain i{flex:1;border-radius:4px 4px 0 0;background:var(--emas-2);animation:tenun-naik 3.2s ease-in-out infinite alternate}
+.hero-kain i:nth-child(3n){background:#f3dfa6}.hero-kain i:nth-child(4n+1){background:#b8791f}
+@keyframes tenun-naik{from{height:22%}to{height:100%}}
+.auth-panel{display:grid;place-items:center;padding:34px 22px;background:linear-gradient(180deg,var(--krem),var(--krem-2))}
+.auth-card{width:min(540px,100%)}
+.auth-card .card{padding:30px 30px 26px;box-shadow:var(--bayang-besar)}
+.salam{margin-bottom:20px}.salam h2{font-size:1.65rem;margin-bottom:4px}.salam p{color:var(--tinta-2);margin:0}
+.tab-saklar{display:flex;gap:4px;background:var(--krem-2);padding:5px;border-radius:999px;margin-bottom:22px}
+.tab-saklar button{flex:1;border:0;background:none;padding:11px 12px;border-radius:999px;font:700 .9rem var(--f-isi);color:var(--tinta-2);cursor:pointer;transition:background .2s,color .2s}
+.tab-saklar button[aria-selected=true]{background:var(--marun);color:#fff;box-shadow:0 6px 14px -6px rgba(107,26,40,.7)}
+.tab-isi[hidden]{display:none}
+.peran-pilih{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.peran-pilih .opsi{margin:0;flex-direction:column;gap:2px;align-items:flex-start;padding:12px 14px}
+.peran-pilih .opsi input{position:absolute;opacity:0;pointer-events:none}
+.peran-pilih .opsi:has(input:focus-visible){outline:3px solid var(--emas-2)}
+.hanya-penjual[hidden]{display:none}
+.seksi-judul{display:flex;align-items:center;gap:10px;margin:20px 0 12px;font:700 .78rem var(--f-isi);letter-spacing:.1em;text-transform:uppercase;color:var(--marun)}
+.seksi-judul::after{content:"";flex:1;height:1px;background:var(--garis)}
+.demo-akun{margin-top:18px;border:1.5px dashed var(--emas);background:#fff7e0;border-radius:12px;padding:12px 14px;font-size:.82rem}
+.demo-akun summary{cursor:pointer;font-weight:700;color:var(--marun)}
+.demo-akun ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.demo-akun button{width:100%;display:flex;justify-content:space-between;gap:8px;text-align:left;background:#fff;border:1px solid var(--garis);border-radius:8px;padding:7px 10px;font:500 .82rem var(--f-isi);cursor:pointer;color:var(--tinta)}
+.demo-akun button:hover{border-color:var(--emas);background:#fffdf4}.demo-akun code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem}
+.kata-sandi-wrap{position:relative}.kata-sandi-wrap button{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--marun);font:700 .76rem var(--f-isi);cursor:pointer;padding:6px 8px}
+
+/* ---------- halaman 404: kain robek yang gagal ditenun ---------- */
+.nf{min-height:100vh;display:grid;place-items:center;padding:28px 20px;text-align:center;
+  background:repeating-linear-gradient(90deg,rgba(107,26,40,.04) 0 1px,transparent 1px 8px),repeating-linear-gradient(0deg,rgba(107,26,40,.04) 0 1px,transparent 1px 8px),var(--krem)}
+.nf-in{max-width:640px}.nf-art{width:min(560px,94vw);height:auto;filter:drop-shadow(0 18px 22px rgba(63,13,23,.18))}
+.nf h1{font-size:clamp(1.9rem,4.4vw,2.8rem);margin:6px 0 10px}.nf p{color:var(--tinta-2);max-width:46ch;margin:0 auto 22px;font-size:1.02rem}
+.nf .kode{font:700 .78rem var(--f-isi);letter-spacing:.3em;text-transform:uppercase;color:var(--emas)}
+.nf-aksi{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.benang-lepas{transform-box:fill-box;transform-origin:50% 0;animation:ayun 3.6s ease-in-out infinite alternate}
+.benang-lepas:nth-of-type(2n){animation-duration:4.4s;animation-delay:-1.2s}.benang-lepas:nth-of-type(3n){animation-duration:3.1s;animation-delay:-2s}
+@keyframes ayun{from{transform:rotate(-5deg)}to{transform:rotate(6deg)}}
+.teropong-jatuh{transform-box:fill-box;transform-origin:50% 50%;animation:goyang 5s ease-in-out infinite}
+@keyframes goyang{0%,100%{transform:rotate(-14deg) translateY(0)}50%{transform:rotate(-8deg) translateY(-4px)}}
+
+@media (max-width:960px){
+  .auth{grid-template-columns:1fr}.auth-hero{padding:26px 22px 22px;gap:14px}.auth-hero h1{font-size:2.1rem;max-width:none;margin-bottom:8px}
+  .fitur,.hero-kain{display:none}.auth-hero .lead{margin:0}.auth-panel{padding:22px 14px 40px}.auth-card .card{padding:22px 18px}
+}
+@media (prefers-reduced-motion:reduce){.hero-kain i,.benang-lepas,.teropong-jatuh{animation:none}}

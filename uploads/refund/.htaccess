@@ -1,0 +1,9 @@
+# Bukti pembayaran bersifat pribadi: hanya bisa dibuka lewat api/bukti.php (dengan pemeriksaan hak akses)
+Options -Indexes
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>

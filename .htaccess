@@ -1,0 +1,22 @@
+# Songketin — aturan Apache (XAMPP / Laragon / hosting umum)
+Options -Indexes
+DirectoryIndex index.php
+
+# Semua alamat yang tidak ada diarahkan ke halaman 404 bertema "kain robek"
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ 404.php [L]
+</IfModule>
+
+# Berkas yang tidak boleh diunduh langsung
+<FilesMatch "\.(sql|md|log|lock|ini|sqlite)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
