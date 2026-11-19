@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "0907";
+$pass = "";
 $db = "songketin";
 $koneksi = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi){
